@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AudVidMerger:jar">
+    <output-path>$PROJECT_DIR$/OUT/artifacts/AudVidMerger_jar</output-path>
+    <root id="archive" name="AudVidMerger.jar">
+      <element id="module-output" name="AudVidMerger" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/tukaani/xz/1.8/xz-1.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-compress/1.19/commons-compress-1.19.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
