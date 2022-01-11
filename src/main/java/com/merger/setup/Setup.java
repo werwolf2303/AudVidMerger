@@ -20,7 +20,7 @@ public class Setup {
     public void showSetup() {
         final JFrame main = new JFrame("AudVidMerger Setup");
         final JTextArea info = new JTextArea("AudVidMerger Setup\n\nClick Next");
-        final JTextArea info2 = new JTextArea("This setup will download ffmpeg and create some directories.\n\nThis things will be created in the current directory");
+        final JTextArea info2 = new JTextArea("This setup will download ffmpeg and create some directories.\n\nThis things will be created in the current directory\n\nAfter clicking Next the Setup will start do its thing");
         final JTextArea info3 = new JTextArea("\n\n\n After clicking Done the program will start itself\n\n\nDone!");
         JPanel control = new JPanel();
         JPanel infos = new JPanel();
