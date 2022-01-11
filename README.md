@@ -5,11 +5,11 @@
  
  Supported Windows Versions:
  
- Windows XP
- Windows 7 (Untested)
- Windows 8 (Untested)
- Windows 10 (Untested)
- Windows 11 (Developed On)
+ - Windows XP
+ - Windows 7 (Untested)
+ - Windows 8 (Untested)
+ - Windows 10 (Untested)
+ - Windows 11 (Developed On)
  
  <h3>Features</h3>
  
