@@ -1,19 +1,17 @@
 package com.merger.windows;
 
+import com.merger.error.ErrorDialog;
+import com.merger.fallback.Executor;
+import com.merger.tools.DetectOS;
 import com.merger.tools.Files;
 import com.merger.tools.ffmpeg;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 
 public class MainWindow extends JPanel {
     private JButton jcomp1;
@@ -42,10 +40,18 @@ public class MainWindow extends JPanel {
         endopt = new JLabel("---------------------");
         jcomp7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(!check.isSelected()) {
-                    new ffmpeg().cutAudio(jcomp6.getText(), System.getProperty("user.dir") + "/OUT/");
+                if(new DetectOS().isXP()) {
+                    if(!check.isSelected()) {
+                        new Executor().cutAudio(jcomp6.getText(),System.getProperty("user.dir") + "/OUT/");
+                    }else{
+                        new Executor().cutAudioSaveOnlyVideo(jcomp6.getText(), System.getProperty("user.dir") + "/OUT/");
+                    }
                 }else{
-                    new ffmpeg().cutAudioSaveOnlyVideo(jcomp6.getText(), System.getProperty("user.dir") + "/OUT/");
+                    if (!check.isSelected()) {
+                        new ffmpeg().cutAudio(jcomp6.getText(), System.getProperty("user.dir") + "/OUT/");
+                    } else {
+                        new ffmpeg().cutAudioSaveOnlyVideo(jcomp6.getText(), System.getProperty("user.dir") + "/OUT/");
+                    }
                 }
             }
         });
@@ -63,7 +69,11 @@ public class MainWindow extends JPanel {
                             if (jcomp3.getText().equals("")) {
                                 new ErrorDialog().open("Error", "You didnt select a audio file", frames);
                             }else{
-                                new ffmpeg().mergeAudioAndVideo(jcomp2.getText(),jcomp3.getText(),System.getProperty("user.dir") + "/OUT/");
+                                if(new DetectOS().isXP()) {
+                                    new Executor().mergeAudioAndVideo(jcomp2.getText(), jcomp3.getText(), System.getProperty("user.dir") + "/OUT/");
+                                }else {
+                                    new ffmpeg().mergeAudioAndVideo(jcomp2.getText(), jcomp3.getText(), System.getProperty("user.dir") + "/OUT/");
+                                }
                             }
                         }
                     }

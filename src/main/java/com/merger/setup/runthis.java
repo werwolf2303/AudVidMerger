@@ -1,6 +1,9 @@
 package com.merger.setup;
 
+import com.merger.check.CheckDownload;
 import com.merger.config.Config;
+import com.merger.error.XPErrorDialog;
+import com.merger.fallback.Downloader;
 import com.merger.internet.Download;
 import com.merger.internet.HandleUnpacked;
 import com.merger.tools.DetectArchitecture;
@@ -25,9 +28,25 @@ public class runthis {
             DetectOS os = new DetectOS();
             DetectArchitecture arch = new DetectArchitecture();
             if (os.isXP()) {
-                Download.downloadZIP(new Download.downloadFFMPEG().WinXPx86(), System.getProperty("user.dir") + "/LIBS");
-                Download.extractZIP(System.getProperty("user.dir") + "/LIBS/ffmpeg.zip", System.getProperty("user.dir") + "/LIBS/");
-                new Config().writeKey("ffmpeg", HandleUnpacked.getFFMPEGExecPath());
+                try {
+                    Download.downloadZIP(new Download.downloadFFMPEG().WinXPx86(), System.getProperty("user.dir") + "/LIBS");
+                }catch (NullPointerException nullPointerException) {
+
+                }
+                if(new CheckDownload().checkIfDownloaded(false)) {
+                    Download.extractZIP(System.getProperty("user.dir") + "/LIBS/ffmpeg.zip", System.getProperty("user.dir") + "/LIBS/");
+                }else{
+                    new Downloader().downloadXP(new Download.downloadFFMPEG().WinXPx86(), System.getProperty("user.dir") + "/LIBS");
+                    if(new CheckDownload().checkIfDownloaded(false)) {
+                    }else{
+                        Download.extractZIP(System.getProperty("user.dir") + "/LIBS/ffmpeg.zip", System.getProperty("user.dir") + "/LIBS/");
+                    }
+                }
+                try {
+                    new Config().writeKey("ffmpeg", HandleUnpacked.getFFMPEGExecPath());
+                }catch (NullPointerException nullPointerException) {
+                    new Config().writeKey("ffmpeg", "/LIBS/ffmpeg/ffmpeg.exe");
+                }
             } else {
                 if (os.isWindows()) {
                     if (arch.is32()) {

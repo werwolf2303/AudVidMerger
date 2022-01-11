@@ -1,4 +1,4 @@
-package com.merger.windows;
+package com.merger.error;
 
 import javax.swing.*;
 import java.awt.*;

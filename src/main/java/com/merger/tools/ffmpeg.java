@@ -22,7 +22,7 @@ public class ffmpeg {
     }
     public void mergeAudioAndVideo(String videopath,String audiopath, String outputpath) {
         try {
-            Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c \"" + System.getProperty("user.dir") + new Config().readConfig("ffmpeg") + "\" -i \"" + videopath + "\" -i \"" + audiopath + "\" \"" + outputpath + "merged.mp4&explorer " + System.getProperty("user.dir") + "/OUT");
+            Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c " + System.getProperty("user.dir") + new Config().readConfig("ffmpeg") + " -i \"" + videopath + "\" -i \"" + audiopath + "\" \"" + outputpath + "merged.mp4&explorer " + System.getProperty("user.dir") + "/OUT");
         } catch (IOException e) {
             e.printStackTrace();
         }
