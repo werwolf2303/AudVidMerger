@@ -25,6 +25,7 @@ public class MainWindow extends JPanel {
     private JCheckBox check;
     private JLabel info;
     private JLabel endopt;
+    private JButton showout;
 
     public MainWindow() {
         //construct components
@@ -38,6 +39,7 @@ public class MainWindow extends JPanel {
         check = new JCheckBox("Save Only Video");
         info = new JLabel("Extract Audio Options");
         endopt = new JLabel("---------------------");
+        showout = new JButton("Open Output Folder");
         jcomp7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(new DetectOS().isXP()) {
@@ -155,6 +157,12 @@ public class MainWindow extends JPanel {
 
             }
         });
+        showout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Explorer().openOutputFolder();
+            }
+        });
         //add components
         add (jcomp1);
         add (jcomp2);
@@ -166,7 +174,8 @@ public class MainWindow extends JPanel {
         add (check);
         add (info);
         add (endopt);
-
+        add (showout);
+        
         //set component bounds (only needed by Absolute Positioning)
         jcomp1.setBounds (370, 10, 100, 25);
         jcomp2.setBounds (0, 115, 540, 140);
@@ -178,6 +187,7 @@ public class MainWindow extends JPanel {
         check.setBounds (5, 60,185,25);
         info.setBounds (5, 40, 185, 15);
         endopt.setBounds(5,80,185,7);
+        showout.setBounds(340,51,180,25);
     }
 
 
