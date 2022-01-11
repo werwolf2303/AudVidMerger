@@ -1,5 +1,6 @@
 package com.merger.windows;
 
+import com.merger.tools.Explorer;
 import com.merger.error.ErrorDialog;
 import com.merger.fallback.Executor;
 import com.merger.tools.DetectOS;
